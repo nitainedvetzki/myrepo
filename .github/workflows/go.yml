@@ -27,6 +27,4 @@ jobs:
     - name: Test
       run: go test -v ./...
       
-    - name: Golang Vulncheck
-      uses: Templum/govulncheck-action@v0.0.9
 
