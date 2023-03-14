@@ -8,4 +8,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Scan for Vulnerabilities in Code
-        uses: Templum/govulncheck-action@latest
+        uses: Templum/govulncheck-action@v0.0.9
