@@ -2,28 +2,25 @@ package main
 
 import (
 	"fmt"
+	"net"
+	"os"
+	"time"
 
-	"golang.org/x/crypto/bcrypt"
-	"golang.org/x/net/http2"
-	"gopkg.in/yaml.v3"
+	"golang.org/x/net/context"
 )
 
 func main() {
-	// bcrypt usage example
-	password := "myPassword"
-	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	fmt.Printf("Hashed password: %s\n", string(hashedPassword))
+	// Set a timeout for the DNS lookup.
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
 
-	// http2 usage example
-	client := http2.Client{}
-	fmt.Printf("HTTP2 client: %v\n", client)
+	// Perform a DNS lookup for the IP address of a domain.
+	ipAddr, err := net.DefaultResolver.LookupIPAddr(ctx, "google.com")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error: %s\n", err.Error())
+		os.Exit(1)
+	}
 
-	// yaml usage example
-	yamlString := `
-		name: John Doe
-		age: 30
-	`
-	var data map[string]interface{}
-	_ = yaml.Unmarshal([]byte(yamlString), &data)
-	fmt.Printf("Unmarshalled YAML data: %v\n", data)
+	// Print the first IP address returned by the DNS lookup.
+	fmt.Printf("IP address for google.com: %s\n", ipAddr[0].IP.String())
 }
