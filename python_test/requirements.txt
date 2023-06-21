@@ -1,3 +1,0 @@
-yattag==1.15.1
-snowflake-connector-python==2.0.0
-tensorflow==2.0.0
