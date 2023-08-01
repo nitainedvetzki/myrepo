@@ -3,6 +3,6 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.App" Version="2.1.0" />
+    <PackageReference Include="Microsoft.NETCore.App" Version="2.1.29" />
   </ItemGroup>
 </Project>
